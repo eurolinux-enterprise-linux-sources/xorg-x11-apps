@@ -4,44 +4,43 @@ Summary: X.Org X11 applications
 Name: xorg-x11-%{pkgname}
 # NOTE: The package version should be set to the X11 major release from which
 # the OS release is based upon.
-Version: 7.6
+Version: 7.7
 Release: 6%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
 
 # Clock apps
-Source0:  ftp://ftp.x.org/pub/individual/app/oclock-1.0.2.tar.bz2
-Source1:  ftp://ftp.x.org/pub/individual/app/xclock-1.0.5.tar.bz2
+Source0:  ftp://ftp.x.org/pub/individual/app/oclock-1.0.3.tar.bz2
+Source1:  ftp://ftp.x.org/pub/individual/app/xclock-1.0.6.tar.bz2
 # X Window Dump (xwd) utilities
 Source2:  ftp://ftp.x.org/pub/individual/app/xwd-1.0.4.tar.bz2
 Source3:  ftp://ftp.x.org/pub/individual/app/xwud-1.0.3.tar.bz2
-Source4:  ftp://ftp.x.org/pub/individual/app/xpr-1.0.3.tar.bz2
+Source4:  ftp://ftp.x.org/pub/individual/app/xpr-1.0.4.tar.bz2
 # Miscellaneous other applications
-Source5:  ftp://ftp.x.org/pub/individual/app/luit-1.1.0.tar.bz2
+Source5:  ftp://ftp.x.org/pub/individual/app/luit-1.1.1.tar.bz2
 Source6:  ftp://ftp.x.org/pub/individual/app/x11perf-1.5.4.tar.bz2
-Source7:  ftp://ftp.x.org/pub/individual/app/xbiff-1.0.2.tar.bz2
-Source8:  ftp://ftp.x.org/pub/individual/app/xclipboard-1.1.1.tar.bz2
-Source9:  ftp://ftp.x.org/pub/individual/app/xconsole-1.0.4.tar.bz2
-Source10: ftp://ftp.x.org/pub/individual/app/xcursorgen-1.0.4.tar.bz2
+Source7:  ftp://ftp.x.org/pub/individual/app/xbiff-1.0.3.tar.bz2
+Source8:  ftp://ftp.x.org/pub/individual/app/xclipboard-1.1.2.tar.bz2
+Source9:  ftp://ftp.x.org/pub/individual/app/xconsole-1.0.5.tar.bz2
+Source10: ftp://ftp.x.org/pub/individual/app/xcursorgen-1.0.5.tar.bz2
 Source11: ftp://ftp.x.org/pub/individual/app/xeyes-1.1.1.tar.bz2
-Source13: ftp://ftp.x.org/pub/individual/app/xload-1.1.0.tar.bz2
-Source14: ftp://ftp.x.org/pub/individual/app/xlogo-1.0.3.tar.bz2
-Source15: ftp://ftp.x.org/pub/individual/app/xmag-1.0.4.tar.bz2
-Source16: ftp://ftp.x.org/pub/individual/app/xmessage-1.0.3.tar.bz2
-Source18: ftp://ftp.x.org/pub/individual/app/xfd-1.1.0.tar.bz2
-Source19: ftp://ftp.x.org/pub/individual/app/xfontsel-1.0.3.tar.bz2
-Source20: ftp://ftp.x.org/pub/individual/app/xvidtune-1.0.2.tar.bz2
+Source13: ftp://ftp.x.org/pub/individual/app/xload-1.1.1.tar.bz2
+Source14: ftp://ftp.x.org/pub/individual/app/xlogo-1.0.4.tar.bz2
+Source15: ftp://ftp.x.org/pub/individual/app/xmag-1.0.5.tar.bz2
+Source16: ftp://ftp.x.org/pub/individual/app/xmessage-1.0.4.tar.bz2
+Source18: ftp://ftp.x.org/pub/individual/app/xfd-1.1.1.tar.bz2
+Source19: ftp://ftp.x.org/pub/individual/app/xfontsel-1.0.4.tar.bz2
+Source20: ftp://ftp.x.org/pub/individual/app/xvidtune-1.0.3.tar.bz2
 
 Patch0: x11perf-1.5.4-x11perf-datadir-cleanups.patch
-Patch2: xconsole-1.0.3-streams-me-softer.patch
-Patch6: xbiff-1.0.2-xmu-configure.patch
+Patch7: luit-1.1.1-configure-define-XOPEN_SOURCE-to-600-on-linux.patch
 
 BuildRequires: autoconf automake
 
 BuildRequires: xorg-x11-util-macros
-# xfd needs gettext
-BuildRequires: gettext
+# xfd/xclock need gettext
+BuildRequires: gettext gettext-devel
 BuildRequires: zlib-devel
 BuildRequires: libfontenc-devel
 BuildRequires: libX11-devel
@@ -77,9 +76,8 @@ A collection of common X Window System applications.
 
 %prep
 %setup -q -c %{name}-%{version} -a1 -a2 -a3 -a4 -a5 -a6 -a7 -a8 -a9 -a10 -a11 -a13 -a14 -a15 -a16 -a18 -a19 -a20
-%patch0 -p0 -b .x11perf-datadir-cleanups
-#%patch2 -p0 -b .streams-me-softer
-%patch6 -p1 -b .xmu-configure
+%patch0 -p0 -b .x11perf-datadir-cleanup
+%patch7 -p0 -b .luit-xopen_source
 
 %build
 # Build all apps
@@ -178,8 +176,42 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xwud.1*
 
 %changelog
-* Wed Sep 12 2012 Dave Airlie <airlied@redhat.com> 7.6-6
-- x11perf 1.5.4 (CVE-2011-2504)
+* Tue Feb 25 2014 Soren Sandmann <ssp@redhat.com> - 7.7-6
+- Rebuilding for #1069289
+
+* Fri Feb 15 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 7.7-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
+
+* Tue Jan 15 2013 Peter Hutterer <peter.hutterer@redhat.com> 7.7-4
+- upload xfontsel tarball, drop duplicate xlogo sources
+
+* Mon Jan 14 2013 Peter Hutterer <peter.hutterer@redhat.com> 7.7-3
+- luit 1.1.1
+- oclock 1.0.3
+- xclock 1.0.6
+- xbiff 1.0.3
+- xpr 1.0.4
+- xcursorgen 1.0.5
+- xclipboard 1.1.2
+- xfontsel 1.0.4
+- xfd 1.1.1
+- xlogo 1.0.4
+- xvidtune 1.0.3
+
+* Mon Jan 14 2013 Peter Hutterer <peter.hutterer@redhat.com> 7.7-2
+- xconsole 1.0.5
+- xmessage 1.0.4
+- xmag 1.0.5
+
+* Thu Jan 03 2013 Adam Jackson <ajax@redhat.com> 7.7-1
+- Superstition bump to 7.7
+- Drop old streams patch
+
+* Wed Sep 12 2012 Dave Airlie <airlied@redhat.com> 7.6-7
+- x11perf 1.5.4 - fixes CVE-2011-2504
+
+* Sun Jul 22 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 7.6-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
 * Sat Jan 14 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 7.6-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild

@@ -4,50 +4,44 @@ Summary: X.Org X11 applications
 Name: xorg-x11-%{pkgname}
 # NOTE: The package version should be set to the X11 major release from which
 # the OS release is based upon.
-Version: 7.4
-Release: 10%{?dist}
+Version: 7.6
+Release: 6%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 # Clock apps
-Source0:  ftp://ftp.x.org/pub/individual/app/oclock-1.0.1.tar.bz2
-Source1:  ftp://ftp.x.org/pub/individual/app/xclock-1.0.4.tar.bz2
+Source0:  ftp://ftp.x.org/pub/individual/app/oclock-1.0.2.tar.bz2
+Source1:  ftp://ftp.x.org/pub/individual/app/xclock-1.0.5.tar.bz2
 # X Window Dump (xwd) utilities
-Source2:  ftp://ftp.x.org/pub/individual/app/xwd-1.0.1.tar.bz2
-Source3:  ftp://ftp.x.org/pub/individual/app/xwud-1.0.2.tar.bz2
-Source4:  ftp://ftp.x.org/pub/individual/app/xpr-1.0.2.tar.bz2
+Source2:  ftp://ftp.x.org/pub/individual/app/xwd-1.0.4.tar.bz2
+Source3:  ftp://ftp.x.org/pub/individual/app/xwud-1.0.3.tar.bz2
+Source4:  ftp://ftp.x.org/pub/individual/app/xpr-1.0.3.tar.bz2
 # Miscellaneous other applications
-Source5:  ftp://ftp.x.org/pub/individual/app/luit-1.0.4.tar.bz2
-Source6:  ftp://ftp.x.org/pub/individual/app/x11perf-1.4.1.tar.bz2
-Source7:  ftp://ftp.x.org/pub/individual/app/xbiff-1.0.1.tar.bz2
-Source8:  ftp://ftp.x.org/pub/individual/app/xclipboard-1.0.1.tar.bz2
-Source9:  ftp://ftp.x.org/pub/individual/app/xconsole-1.0.3.tar.bz2
-Source10: ftp://ftp.x.org/pub/individual/app/xcursorgen-1.0.2.tar.bz2
-Source11: ftp://ftp.x.org/pub/individual/app/xeyes-1.0.991.tar.bz2
-Source12: ftp://ftp.x.org/pub/individual/app/xkill-1.0.2.tar.bz2
-Source13: ftp://ftp.x.org/pub/individual/app/xload-1.0.2.tar.bz2
-Source14: ftp://ftp.x.org/pub/individual/app/xlogo-1.0.1.tar.bz2
-Source15: ftp://ftp.x.org/pub/individual/app/xmag-1.0.3.tar.bz2
-Source16: ftp://ftp.x.org/pub/individual/app/xmessage-1.0.2.tar.bz2
-Source17: ftp://ftp.x.org/pub/individual/app/xinput-1.5.1.tar.bz2
-Source18: ftp://ftp.x.org/pub/individual/app/xfd-1.0.1.tar.bz2
-Source19: ftp://ftp.x.org/pub/individual/app/xfontsel-1.0.2.tar.bz2
-Source20: ftp://ftp.x.org/pub/individual/app/xvidtune-1.0.1.tar.bz2
+Source5:  ftp://ftp.x.org/pub/individual/app/luit-1.1.0.tar.bz2
+Source6:  ftp://ftp.x.org/pub/individual/app/x11perf-1.5.4.tar.bz2
+Source7:  ftp://ftp.x.org/pub/individual/app/xbiff-1.0.2.tar.bz2
+Source8:  ftp://ftp.x.org/pub/individual/app/xclipboard-1.1.1.tar.bz2
+Source9:  ftp://ftp.x.org/pub/individual/app/xconsole-1.0.4.tar.bz2
+Source10: ftp://ftp.x.org/pub/individual/app/xcursorgen-1.0.4.tar.bz2
+Source11: ftp://ftp.x.org/pub/individual/app/xeyes-1.1.1.tar.bz2
+Source13: ftp://ftp.x.org/pub/individual/app/xload-1.1.0.tar.bz2
+Source14: ftp://ftp.x.org/pub/individual/app/xlogo-1.0.3.tar.bz2
+Source15: ftp://ftp.x.org/pub/individual/app/xmag-1.0.4.tar.bz2
+Source16: ftp://ftp.x.org/pub/individual/app/xmessage-1.0.3.tar.bz2
+Source18: ftp://ftp.x.org/pub/individual/app/xfd-1.1.0.tar.bz2
+Source19: ftp://ftp.x.org/pub/individual/app/xfontsel-1.0.3.tar.bz2
+Source20: ftp://ftp.x.org/pub/individual/app/xvidtune-1.0.2.tar.bz2
 
-Patch0: x11perf-1.4.1-x11perf-datadir-cleanups.patch
+Patch0: x11perf-1.5.4-x11perf-datadir-cleanups.patch
 Patch2: xconsole-1.0.3-streams-me-softer.patch
-Patch3: xvidtune-1.0.1-buffer-stomp.patch
-Patch4: xlogo-less-xprint.patch
-Patch5: xinput-1.5.1-atom-64-bit.patch
+Patch6: xbiff-1.0.2-xmu-configure.patch
 
 BuildRequires: autoconf automake
 
-BuildRequires: pkgconfig
 BuildRequires: xorg-x11-util-macros
-# xbiff needs xbitmaps-devel
-BuildRequires: xbitmaps-devel
+# xfd needs gettext
+BuildRequires: gettext
 BuildRequires: zlib-devel
 BuildRequires: libfontenc-devel
 BuildRequires: libX11-devel
@@ -64,9 +58,10 @@ BuildRequires: libpng-devel
 BuildRequires: libXfixes-devel
 BuildRequires: libXi-devel >= 1.2
 BuildRequires: libXxf86vm-devel
+BuildRequires: xorg-x11-xbitmaps
 
 Provides: luit oclock x11perf xbiff xclipboard xclock xconsole xcursorgen
-Provides: xeyes xkill xload xlogo xmag xmessage xpr xwd xwud xinput
+Provides: xeyes xload xlogo xmag xmessage xpr xwd xwud
 Provides: xfd xfontsel xvidtune
 
 # NOTE: xwd, xwud, luit used to be in these.
@@ -81,12 +76,10 @@ Conflicts: xorg-x11-server-utils < 7.4-8.fc12
 A collection of common X Window System applications.
 
 %prep
-%setup -q -c %{name}-%{version} -a1 -a2 -a3 -a4 -a5 -a6 -a7 -a8 -a9 -a10 -a11 -a12 -a13 -a14 -a15 -a16 -a17 -a18 -a19 -a20
+%setup -q -c %{name}-%{version} -a1 -a2 -a3 -a4 -a5 -a6 -a7 -a8 -a9 -a10 -a11 -a13 -a14 -a15 -a16 -a18 -a19 -a20
 %patch0 -p0 -b .x11perf-datadir-cleanups
-%patch2 -p0 -b .streams-me-softer
-%patch3 -p1 -b .buffer-stomp
-%patch4 -p0 -b .xprint
-%patch5 -p1 -b .atom-64-bit
+#%patch2 -p0 -b .streams-me-softer
+%patch6 -p1 -b .xmu-configure
 
 %build
 # Build all apps
@@ -132,8 +125,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/xeyes
 %{_bindir}/xfd
 %{_bindir}/xfontsel
-%{_bindir}/xinput
-%{_bindir}/xkill
 %{_bindir}/xload
 %{_bindir}/xlogo
 %{_bindir}/xmag
@@ -142,7 +133,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/xvidtune
 %{_bindir}/xwd
 %{_bindir}/xwud
-%dir %{_datadir}/X11
 %{_datadir}/X11/app-defaults/Clock-color
 %{_datadir}/X11/app-defaults/XClipboard
 %{_datadir}/X11/app-defaults/XClock
@@ -178,8 +168,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xeyes.1*
 %{_mandir}/man1/xfd.1*
 %{_mandir}/man1/xfontsel.1*
-%{_mandir}/man1/xinput.1*
-%{_mandir}/man1/xkill.1*
 %{_mandir}/man1/xload.1*
 %{_mandir}/man1/xlogo.1*
 %{_mandir}/man1/xmag.1*
@@ -190,12 +178,76 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xwud.1*
 
 %changelog
-* Wed May 19 2010 Peter Hutterer <peter.hutterer@redhat.com> 7.4-10
-- xinput-1.5.1-atom-64-bit.patch: Atoms on 64bit archs are 64 bit wide
-  (#593150)
+* Wed Sep 12 2012 Dave Airlie <airlied@redhat.com> 7.6-6
+- x11perf 1.5.4 (CVE-2011-2504)
 
-* Fri Mar 19 2010 Peter Hutterer <peter.hutterer@redhat.com> 7.4-9
-- xinput 1.5.1 (#574998)
+* Sat Jan 14 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 7.6-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
+* Thu Nov 10 2011 Adam Jackson <ajax@redhat.com> 7.6-4
+- Move xinput and xkill to xorg-x11-server-utils
+
+* Mon Nov 07 2011 Adam Jackson <ajax@redhat.com> 7.6-3
+- Rebuild for libpng 1.5
+
+* Mon Feb 07 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 7.6-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
+
+* Thu Jan 06 2011 Adam Jackson <ajax@redhat.com> 7.6-1
+- x11perf 1.5.3
+
+* Fri Nov 26 2010 Peter Hutterer <peter.hutterer@redhat.com> 7.5-5
+- xeyes 1.1.1
+
+* Fri Nov 12 2010 Peter Hutterer <peter.hutterer@redhat.com> 7.5-4
+- xinput 1.5.3
+- xkill 1.0.3
+
+* Wed Nov 10 2010 Peter Hutterer <peter.hutterer@redhat.com> 7.5-3
+- xclipboard 1.1.1
+
+* Mon Nov 08 2010 Peter Hutterer <peter.hutterer@redhat.com> 7.5-2
+- oclock 1.0.2
+- xclock 1.0.5
+- xconsole 1.0.4
+- xbiff 1.0.2
+- luit 1.1.0
+- x11perf 1.5.2
+- xcursorgen 1.0.4
+- xeyes 1.1.0
+- xload 1.1.0
+- xlogo 1.0.3
+- xmag 1.0.4
+- xmessage 1.0.3
+- xfd 1.1.0
+- xfontsel 1.0.3
+- xvidtune 1.0.2
+
+* Mon Nov 08 2010 Peter Hutterer <peter.hutterer@redhat.com> 7.5-1
+- xwd 1.0.4
+- xwud 1.0.3
+
+* Fri Jun 04 2010 Peter Hutterer <peter.hutterer@redhat.com> 7.4-14
+- xinput 1.5.2
+
+* Mon Mar 15 2010 Peter Hutterer <peter.hutterer@redhat.com> 7.4-13
+- xinput 1.5.1
+
+* Fri Mar 05 2010 Matěj Cepl <mcepl@redhat.com> - 7.4-12
+- Add missing BR xorg-x11-xbitmaps
+
+* Thu Mar 04 2010 Matěj Cepl <mcepl@redhat.com> - 7.4-11
+- Don't steal directory owned by filesystem package
+
+* Tue Feb 09 2010 Adam Jackson <ajax@redhat.com> 7.4-10
+- xlogo-1.0.1-add-needed.patch: Fix FTBFS for --no-add-needed
+
+* Mon Oct 19 2009 Adam Jackson <ajax@redhat.com> 7.4-9
+- xclipboard 1.1.0
+- xcursorgen 1.0.3
+- xpr 1.0.3
+- xwd 1.0.3
+- x11perf 1.5.1
 
 * Tue Oct 13 2009 Peter Hutterer <peter.hutterer@redhat.com> 7.4-8
 - xinput 1.5.0

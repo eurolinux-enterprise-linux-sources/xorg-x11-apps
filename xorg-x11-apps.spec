@@ -5,35 +5,35 @@ Name: xorg-x11-%{pkgname}
 # NOTE: The package version should be set to the X11 major release from which
 # the OS release is based upon.
 Version: 7.7
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: MIT
 Group: User Interface/X
 URL: http://www.x.org
 
 # Clock apps
 Source0:  ftp://ftp.x.org/pub/individual/app/oclock-1.0.3.tar.bz2
-Source1:  ftp://ftp.x.org/pub/individual/app/xclock-1.0.6.tar.bz2
+Source1:  ftp://ftp.x.org/pub/individual/app/xclock-1.0.7.tar.bz2
 # X Window Dump (xwd) utilities
-Source2:  ftp://ftp.x.org/pub/individual/app/xwd-1.0.4.tar.bz2
-Source3:  ftp://ftp.x.org/pub/individual/app/xwud-1.0.3.tar.bz2
+Source2:  ftp://ftp.x.org/pub/individual/app/xwd-1.0.6.tar.bz2
+Source3:  ftp://ftp.x.org/pub/individual/app/xwud-1.0.4.tar.bz2
 Source4:  ftp://ftp.x.org/pub/individual/app/xpr-1.0.4.tar.bz2
 # Miscellaneous other applications
 Source5:  ftp://ftp.x.org/pub/individual/app/luit-1.1.1.tar.bz2
-Source6:  ftp://ftp.x.org/pub/individual/app/x11perf-1.5.4.tar.bz2
+Source6:  ftp://ftp.x.org/pub/individual/app/x11perf-1.6.0.tar.bz2
 Source7:  ftp://ftp.x.org/pub/individual/app/xbiff-1.0.3.tar.bz2
-Source8:  ftp://ftp.x.org/pub/individual/app/xclipboard-1.1.2.tar.bz2
-Source9:  ftp://ftp.x.org/pub/individual/app/xconsole-1.0.5.tar.bz2
-Source10: ftp://ftp.x.org/pub/individual/app/xcursorgen-1.0.5.tar.bz2
+Source8:  ftp://ftp.x.org/pub/individual/app/xclipboard-1.1.3.tar.bz2
+Source9:  ftp://ftp.x.org/pub/individual/app/xconsole-1.0.6.tar.bz2
+Source10: ftp://ftp.x.org/pub/individual/app/xcursorgen-1.0.6.tar.bz2
 Source11: ftp://ftp.x.org/pub/individual/app/xeyes-1.1.1.tar.bz2
-Source13: ftp://ftp.x.org/pub/individual/app/xload-1.1.1.tar.bz2
+Source13: ftp://ftp.x.org/pub/individual/app/xload-1.1.2.tar.bz2
 Source14: ftp://ftp.x.org/pub/individual/app/xlogo-1.0.4.tar.bz2
-Source15: ftp://ftp.x.org/pub/individual/app/xmag-1.0.5.tar.bz2
+Source15: ftp://ftp.x.org/pub/individual/app/xmag-1.0.6.tar.bz2
 Source16: ftp://ftp.x.org/pub/individual/app/xmessage-1.0.4.tar.bz2
-Source18: ftp://ftp.x.org/pub/individual/app/xfd-1.1.1.tar.bz2
-Source19: ftp://ftp.x.org/pub/individual/app/xfontsel-1.0.4.tar.bz2
+Source18: ftp://ftp.x.org/pub/individual/app/xfd-1.1.2.tar.bz2
+Source19: ftp://ftp.x.org/pub/individual/app/xfontsel-1.0.5.tar.bz2
 Source20: ftp://ftp.x.org/pub/individual/app/xvidtune-1.0.3.tar.bz2
 
-Patch0: x11perf-1.5.4-x11perf-datadir-cleanups.patch
+Patch0: x11perf-1.6.0-x11perf-datadir-cleanups.patch
 Patch7: luit-1.1.1-configure-define-XOPEN_SOURCE-to-600-on-linux.patch
 
 BuildRequires: autoconf automake
@@ -176,6 +176,22 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xwud.1*
 
 %changelog
+* Thu Feb 16 2017 Ben Crocker <bcrocker@redhat.com> - 7.7-7
+- Resolves: #1401684
+- (Rebase for RHEL 7.4)
+- Update the following tarballs:
+- x11perf	1.5.4	=>	1.6.0
+- xclipboard	1.1.2	=>	1.1.3
+- xclock	1.0.6	=>	1.0.7
+- xconsole	1.0.5	=>	1.0.6
+- xcursorgen	1.0.5	=>	1.0.6
+- xfd		1.1.1	=>	1.1.2
+- xfontsel	1.0.4	=>	1.0.5
+- xload		1.1.1	=>	1.1.2
+- xmag		1.0.5	=>	1.0.6
+- xwd		1.0.4	=>	1.0.6
+- xwud		1.0.3	=>	1.0.4
+
 * Tue Feb 25 2014 Soren Sandmann <ssp@redhat.com> - 7.7-6
 - Rebuilding for #1069289
 
@@ -395,7 +411,7 @@ rm -rf $RPM_BUILD_ROOT
   to put the helper scripts in datadir.
 - Added --disable-xprint to configure, as a great symbolic jesture.
 
-* Wed Nov 22 2005 Mike A. Harris <mharris@redhat.com> 0.99.2-4
+* Tue Nov 22 2005 Mike A. Harris <mharris@redhat.com> 0.99.2-4
 - Added "Requires(pre): xorg-x11-filesystem >= 0.99.2-3" to workaround
   (#173384)
 - Added the following patches, and invoke aclocal/automake/autoconf on them

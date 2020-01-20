@@ -1,8 +1,8 @@
-diff -up x11perf-1.5.4/configure.ac.dma x11perf-1.5.4/configure.ac
---- x11perf-1.5.4/configure.ac.dma	2012-09-12 02:46:27.450761915 -0400
-+++ x11perf-1.5.4/configure.ac	2012-09-12 02:46:51.105547164 -0400
-@@ -42,7 +42,7 @@ XORG_DEFAULT_OPTIONS
- AC_TYPE_SIGNAL
+diff -Naur x11perf-1.6.0.old/configure.ac x11perf-1.6.0/configure.ac
+--- x11perf-1.6.0.old/configure.ac	2015-04-30 15:03:46.668372759 +0200
++++ x11perf-1.6.0/configure.ac	2015-04-30 15:03:56.617354502 +0200
+@@ -39,7 +39,7 @@
+ XORG_DEFAULT_OPTIONS
  
  # Define the installation directory for the x11 performance compare scripts
 -AC_SUBST([x11perfcompdir], [$libdir/X11/x11perfcomp])
